@@ -1,0 +1,108 @@
+{
+  "date": "2026-11-04",
+  "physics": {
+    "command": "npm test",
+    "passed": 31,
+    "failed": 0,
+    "scope": "Soluciones analíticas, conservación, convergencia y geometría"
+  },
+  "interface": {
+    "command": "npm run test:ui",
+    "passed": 17,
+    "failed": 0,
+    "browser": "156.0.8078.76",
+    "checks": [
+      {
+        "name": "WebGL inicia y renderiza la escena",
+        "status": "passed"
+      },
+      {
+        "name": "Sonda reproduce 1 nC a 1 m",
+        "status": "passed"
+      },
+      {
+        "name": "La singularidad de una carga se muestra sin resultados falsos",
+        "status": "passed"
+      },
+      {
+        "name": "Edición, límite de 10 cargas y eliminación",
+        "status": "passed"
+      },
+      {
+        "name": "Equipotenciales y cambio 2D/3D",
+        "status": "passed"
+      },
+      {
+        "name": "Trayectoria eléctrica, pausa y CSV con unidades",
+        "status": "passed"
+      },
+      {
+        "name": "Capacitancia cambia con área y dieléctrico",
+        "status": "passed"
+      },
+      {
+        "name": "Entrada no física no contamina el estado",
+        "status": "passed"
+      },
+      {
+        "name": "Circuitos serie/paralelo/mixto y edición de ramas",
+        "status": "passed"
+      },
+      {
+        "name": "Carga RC al 63.2 % y animación temporal",
+        "status": "passed"
+      },
+      {
+        "name": "Imán, hilo y espira con magnitud y signo correctos",
+        "status": "passed"
+      },
+      {
+        "name": "Trayectoria de Lorentz conserva rapidez con E=0",
+        "status": "passed"
+      },
+      {
+        "name": "Campos cruzados: selector E/B sin desviación",
+        "status": "passed"
+      },
+      {
+        "name": "Guardar y abrir restituye el experimento completo",
+        "status": "passed"
+      },
+      {
+        "name": "Importación inválida rechazada sin modificar el experimento",
+        "status": "passed"
+      },
+      {
+        "name": "Cuatro unidades sin desbordamiento a 390 y 768 px",
+        "status": "passed"
+      },
+      {
+        "name": "Sin errores de JavaScript ni recursos fallidos",
+        "status": "passed"
+      }
+    ]
+  },
+  "delivery": {
+    "pages": [
+      "manual.html",
+      "informe.html",
+      "presentacion.html",
+      "video.html"
+    ],
+    "slides": 12,
+    "internalLinks": 11,
+    "video": {
+      "durationSeconds": 361.56,
+      "format": "WebM / VP9",
+      "resolution": "1440x1000",
+      "audio": false,
+      "captions": "Español integradas en imagen y archivo VTT",
+      "bytes": 70657883
+    }
+  },
+  "limits": [
+    "Pruebas móviles mediante viewport, no dispositivos físicos.",
+    "Modelos ideales y dominios limitados: consultar informe.",
+    "No se declara auditoría exhaustiva de accesibilidad ni benchmark multidispositivo."
+  ]
+}
