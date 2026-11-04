@@ -8,6 +8,8 @@ Laboratorio interactivo de campos eléctricos y magnéticos en **2D y 3D**, capa
 
 **[Abrir aplicación web](https://legends600.github.io/simulador-fisica-2-3d/)**
 
+**[Descargar paquete listo para ejecutar](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v1.0.0/flux-fisica-2-v1.0.0.zip)**. Descomprímelo, abre una terminal en la carpeta y ejecuta `node server.mjs`. El paquete incluye las dependencias gráficas y todos los entregables; requiere Node.js 22 o posterior.
+
 Para ejecutarlo desde el código fuente, instala **Node.js 22 o posterior** y abre una terminal en el proyecto:
 
 ```sh
