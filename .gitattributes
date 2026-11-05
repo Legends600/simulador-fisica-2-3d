@@ -5,3 +5,4 @@
 *.png binary
 *.pptx binary
 *.pdf binary
+vendor/** linguist-vendored -whitespace
