@@ -33,7 +33,7 @@ export class World {
     this.motions = [];
     this.motionBuffers = [];
     installStudio(this);
-    this.grid = new THREE.GridHelper(12, 24, 0x3a5065, 0x263b50);
+    this.grid = new THREE.GridHelper(12, 24, 0x3c554a, 0x294035);
     this.grid.rotation.x = Math.PI / 2;
     this.grid.position.z = -0.035;
     this.grid.material.transparent = true;

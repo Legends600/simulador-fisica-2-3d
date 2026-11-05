@@ -23,6 +23,8 @@ Todas las unidades tienen pausa, reproducción, velocidad y avance por pasos. Lo
 
 ## Modelos de laboratorio y acabado 3D
 
+La interfaz utiliza una paleta propia: grafito (`#161f1c`) para el fondo, verde petróleo (`#1a3b30`) para las cabeceras, cobre (`#e1ad7b`) para las acciones y lino verdoso (`#e3e4d4`) en la barra lateral. El logo original ya tiene transparencia y se presenta sin tarjeta blanca, conservando sus proporciones y colores institucionales. Los colores del tema se mantienen en `src/ui/theme.css`; los colores científicos de cargas y polos siguen diferenciándose.
+
 El render **Estudio** incorpora reflejos de un entorno de iluminación generado localmente, materiales metálicos y cerámicos, bordes biselados, sombras y brillo suave. El selector junto a **3D / 2D** permite cambiar a **Render ligero** para reducir la carga gráfica; conserva los modelos y las interacciones. En móviles se inicia en modo ligero.
 
 - **Campo eléctrico:** electrodos esféricos con signos, aros, sonda y curvas con volumen y trazadores luminosos.
@@ -64,7 +66,7 @@ npm run build
 npm start
 ```
 
-**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.2.0/fisica-ii-upeu-v2.2.0.zip)**. Descomprime y abre con Live Server, o ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
+**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.2.1/fisica-ii-upeu-v2.2.1.zip)**. Descomprime y abre con Live Server, o ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
 
 ## Estructura del proyecto
 

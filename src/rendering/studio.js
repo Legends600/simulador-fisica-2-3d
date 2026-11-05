@@ -13,8 +13,8 @@ export function installStudio(world) {
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  scene.background = new THREE.Color(0x091522);
-  scene.fog = new THREE.FogExp2(0x091522, 0.021);
+  scene.background = new THREE.Color(0x0d1813);
+  scene.fog = new THREE.FogExp2(0x0d1813, 0.021);
   scene.add(new THREE.HemisphereLight(0xc2e5ff, 0x142331, 1.5));
   const key = new THREE.DirectionalLight(0xffebd1, 3.4);
   key.position.set(-3, 7, 8);

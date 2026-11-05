@@ -1,0 +1,473 @@
+/* Laboratory palette: graphite, petroleum green, copper and linen.
+   Scientific charge/pole colours and the original university logo stay intact. */
+:root {
+  color-scheme: dark;
+  --canvas: #161f1c;
+  --surface: #21312b;
+  --surface-raised: #293c33;
+  --surface-deep: #17251f;
+  --ink: #eeeade;
+  --muted-ink: #b6c3b6;
+  --border: #415248;
+  --accent: #e1ad7b;
+  --accent-ink: #211c16;
+  --mint: #91c9b1;
+  --lab-blue: var(--accent);
+  --lab-ink: var(--ink);
+  --lab-muted: var(--muted-ink);
+  --lab-border: var(--border);
+  --lab-surface: var(--surface);
+  --navy: #183a30;
+  --muted: var(--muted-ink);
+  --gold: var(--accent);
+  --teal: var(--mint);
+  --line: var(--border);
+  --diagram-cutout: #1c3529;
+  background: var(--canvas);
+  color: var(--ink);
+}
+body {
+  background:
+    radial-gradient(ellipse at 95% 0%, #ad724022, transparent 48%),
+    radial-gradient(ellipse at 22% 90%, #317b5e1a, transparent 55%), var(--canvas);
+  background-attachment: fixed;
+}
+::selection {
+  background: #e1ad7b;
+  color: #211c16;
+}
+button,
+input,
+select,
+a {
+  -webkit-tap-highlight-color: #e1ad7b26;
+}
+button:hover {
+  filter: brightness(1.08);
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline-color: var(--accent);
+}
+.skip-link {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* A transparent logo directly on a contrasting sidebar; no badge or photo card. */
+.sidebar {
+  color-scheme: light;
+  background: linear-gradient(165deg, #e3e4d4 0%, #d8decb 45%, #c6d0b9 100%);
+  color: #2f4738;
+  border-right: 1px solid #697963;
+  box-shadow: 7px 0 28px #0000001c;
+}
+.university-brand {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 6px 8px 13px;
+  margin: 0 0 21px;
+  color: #263e30;
+  gap: 11px;
+}
+.university-brand img {
+  width: 132px;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  filter: none;
+}
+.university-brand small {
+  color: #4c6351;
+}
+.nav-label {
+  color: #4d604e;
+}
+.nav-item {
+  color: #354c3c;
+}
+.nav-item small {
+  color: #4c6251;
+}
+.nav-item:hover {
+  background: #253f3010;
+}
+.nav-item.active {
+  color: #293c2e;
+  background: #bac8ae;
+  border-color: #8c9d7e;
+  box-shadow: inset 3px 0 #9b623d;
+}
+.nav-item.active .nav-icon {
+  color: #8d502b;
+}
+.nav-item.active .nav-number {
+  color: #5e3d28;
+  opacity: 1;
+}
+.sidebar-note,
+.version {
+  border-color: #9fac91;
+  color: #425b45;
+}
+.sidebar-note p {
+  color: #4b634e;
+}
+.sidebar .status-dot {
+  background: #45765b;
+}
+.sidebar-bottom a {
+  color: #3c5743;
+}
+.sidebar-bottom a:hover {
+  color: #673d20;
+}
+
+.topbar {
+  border-color: #455247;
+}
+.breadcrumb,
+.topbar .breadcrumb {
+  color: #c1c8b8;
+}
+.breadcrumb span:first-child {
+  color: #8a9b88;
+}
+.live-label {
+  color: #a9c8b5;
+}
+.live-label i,
+.status-dot {
+  background: #91c9b1;
+}
+.quiet-button,
+.outline-button,
+.secondary-button {
+  background: #27382e;
+  color: #e1dfcd;
+  border-color: #56664f;
+}
+.quiet-button:hover,
+.outline-button:hover,
+.secondary-button:hover {
+  background: #344939;
+  border-color: #9ca382;
+}
+.eyebrow,
+.page-heading .eyebrow {
+  color: #d6ad80;
+}
+.page-heading h1 {
+  color: #f1ebda;
+}
+.page-heading p {
+  color: #b9c4b5;
+}
+
+.parameters-column,
+.control-panel {
+  background: var(--surface);
+}
+.parameters-column {
+  box-shadow: 0 8px 24px #00000019;
+}
+.parameters-heading {
+  background: linear-gradient(130deg, #2c4336, #24372e);
+  border-color: #4b5d4b;
+}
+.parameters-heading .eyebrow {
+  color: #b9c9ac;
+}
+.parameters-heading h2 {
+  color: #f1d5ac;
+}
+.parameters-count {
+  background: #3a4c39;
+  border-color: #667554;
+  color: #e5cda5;
+}
+.control-panel {
+  scrollbar-color: #75876b #21312b;
+}
+.panel-section {
+  border-bottom-color: #3b4e40;
+}
+.section-heading h2,
+.section-heading h3,
+.stage-title,
+.control-panel details > summary {
+  color: #e3e8d4;
+}
+.section-heading .tag {
+  background: #344937;
+  color: #c3d5b5;
+  border: 1px solid #4e6347;
+}
+.field,
+.toggle,
+.charge-position label,
+.branch,
+.charge-q {
+  color: #bdcbb7;
+}
+.field .unit,
+.field output,
+.small-note {
+  color: #b0c0ac;
+}
+.field input:not([type='range']),
+.field select,
+select.standalone,
+.charge-row input,
+.branch input,
+.animation-controls select {
+  background: var(--surface-deep);
+  color: #eee8d5;
+  border-color: #59694e;
+}
+.field input:focus,
+.field select:focus,
+.charge-row input:focus,
+.branch input:focus,
+.animation-controls select:focus {
+  background: #20392a;
+  border-color: #d2aa79;
+}
+.field input:invalid,
+.charge-row input:invalid {
+  background: #4d2e27;
+  color: #ffe1ca;
+  border-color: #d48c71;
+}
+input[type='range'],
+.range-row input[type='range'],
+.toggle input {
+  accent-color: #d7b582;
+}
+.charge-row {
+  background: #25372c;
+  border-color: #4b6047;
+}
+.charge-top {
+  color: #eee4ce;
+}
+.charge-sign {
+  background: #5d4129;
+  color: #ffcd91;
+}
+.charge-sign.negative {
+  background: #293f53;
+  color: #b3d2ff;
+}
+.icon-button {
+  color: #b4c0aa;
+}
+.add-button {
+  background: #2a3e30;
+  border-color: #7a8e66;
+  color: #d3ddc1;
+}
+.primary-button,
+.animation-controls #animation-play {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  font-weight: 650;
+}
+.segmented {
+  background: #17251e;
+  border: 1px solid #485e42;
+}
+.segmented button {
+  color: #bacab0;
+}
+.segmented button.active {
+  background: #466045;
+  color: #f6e9cf;
+  box-shadow: 0 1px 5px #00000024;
+}
+.stage {
+  background: #23372b;
+  border-color: #506a48;
+}
+th,
+td {
+  border-color: #43583e;
+}
+th {
+  color: #c2d1b5;
+}
+td {
+  color: #e0e5d2;
+}
+
+.viewport-card {
+  background: #101d18;
+  border-color: #506250;
+  box-shadow: 0 10px 30px #00000030;
+}
+.viewport-toolbar {
+  background: linear-gradient(110deg, #1a3b30, #233a2c);
+  border-color: #4a5d47;
+  color: #e8ead8;
+}
+.viewport-toolbar #scene-subtitle {
+  color: #aac9af;
+}
+.view-actions button {
+  color: #b8cbb4;
+}
+.view-actions button.active {
+  background: #42583e;
+  color: #f6c792;
+  border-color: #8d926c;
+}
+#render-quality {
+  background: #1b3026;
+  color: #d1debf;
+  border-color: #617755;
+}
+#scene {
+  background: #0d1813;
+}
+#scene-overlay {
+  color: #c8d8c4;
+}
+.scene-hint {
+  background: #14271ed9;
+  border-color: #4c6c4b;
+  color: #c3d4b9;
+}
+.viewport-legend {
+  background: #172d23;
+  border-color: #425c40;
+  color: #c8d7bf;
+}
+.animation-controls {
+  background: #26382d;
+  border-color: #53644d;
+}
+.animation-controls button {
+  background: #344832;
+  color: #e4dfc8;
+  border-color: #657653;
+}
+.animation-controls label,
+.animation-controls output {
+  color: #c3ceba;
+}
+.result {
+  background: linear-gradient(130deg, #2c4334, #23362c);
+  border-color: #55694e;
+  box-shadow: 0 3px 12px #00000014;
+}
+.result-label {
+  color: #bdcdb4;
+}
+.result-value {
+  color: #f0d7ae;
+}
+.result-unit {
+  color: #b8c7af;
+}
+.explanation {
+  border-left-color: #b38c5a;
+}
+.explanation h2 {
+  color: #e5e9d3;
+}
+.explanation p {
+  color: #bac9b3;
+}
+.formula {
+  color: #dbbb8e;
+}
+.circuit-analysis {
+  background: #1c3529;
+  border-color: #536b49;
+  color: #d8e4cd;
+}
+.circuit-analysis .tag {
+  color: #cbdbbf;
+}
+.project-team {
+  background: linear-gradient(120deg, #283e30, #21342a);
+  border-color: #53664c;
+  border-top-color: #bc9263;
+}
+.project-team h2 {
+  color: #efd3a7;
+}
+.project-team h3 {
+  color: #b9ceae;
+}
+.project-team p,
+.project-team li {
+  color: #d4dfc9;
+}
+.project-team a {
+  color: #a5d3b6;
+}
+.page-footer {
+  color: #b3c0aa;
+  border-color: #4a5943;
+}
+.startup-status {
+  background: #243f2e;
+  border-color: #67885b;
+  border-left-color: #cfaa73;
+}
+.startup-status strong {
+  color: #ead7b3;
+}
+.startup-status p {
+  color: #c1d1b6;
+}
+.startup-status button {
+  background: #dfad7a;
+  color: #211c16;
+}
+.startup-error,
+.error-box {
+  background: #493628;
+  color: #f4d7b1;
+  border-color: #a77c4c;
+}
+#toast {
+  background: #d9c49f;
+  color: #263025;
+  border: 1px solid #f1dbb9;
+}
+@media (max-height: 800px) and (min-width: 741px) {
+  .university-brand img {
+    width: 105px;
+    height: auto;
+  }
+}
+@media (max-width: 950px) and (min-width: 741px) {
+  .university-brand img {
+    width: 112px;
+    height: auto;
+  }
+}
+@media (max-width: 740px) {
+  .university-brand {
+    margin: 0;
+    padding: 4px 3px 12px;
+  }
+  .university-brand img {
+    width: 72px;
+    height: auto;
+  }
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #97a487;
+  }
+}

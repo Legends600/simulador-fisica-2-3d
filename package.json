@@ -1,6 +1,6 @@
 {
   "name": "simulador-fisica-2-3d",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "description": "Laboratorio interactivo de electricidad y magnetismo para Física II",
   "type": "module",

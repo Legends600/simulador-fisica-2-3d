@@ -82,7 +82,7 @@ export function circuitMarkup(s) {
   });
   if (s.mode === 'rc')
     svg +=
-      `<rect x="320" y="185" width="40" height="20" fill="#101d2d"/><path d="M334,180 V210 M346,180 V210 M320,195 H334 M346,195 H360" stroke="#e9b469" stroke-width="2.5"/>` +
+      `<rect x="320" y="185" width="40" height="20" fill="var(--diagram-cutout, #101d2d)"/><path d="M334,180 V210 M346,180 V210 M320,195 H334 M346,195 H360" stroke="#e9b469" stroke-width="2.5"/>` +
       text(340, 229, `C = ${s.capacitance} µF`, 10, '#d7e4ef', 'middle');
   else
     svg += text(

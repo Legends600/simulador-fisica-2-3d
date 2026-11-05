@@ -1,6 +1,6 @@
 {
   "date": "2026-11-05",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "physics": {
     "passed": 31,
     "failed": 0
@@ -14,7 +14,7 @@
     "failed": 0
   },
   "staticServer": {
-    "target": "distribution",
+    "target": "source",
     "checks": [
       "Inicio desde servidor estático en subcarpeta, sin node_modules ni rutas especiales",
       "Las cuatro unidades cargan sus controles y escenas",
