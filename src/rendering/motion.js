@@ -15,14 +15,28 @@ export function addFlow(world, paths, { color = 0x9ee9df, speed = 0.13, count = 
   const positions = new Float32Array(routes.length * 3);
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 32;
+  const context = canvas.getContext('2d'),
+    gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+  gradient.addColorStop(0, '#ffffff');
+  gradient.addColorStop(0.22, '#ffffff');
+  gradient.addColorStop(0.5, 'rgba(255,255,255,0.35)');
+  gradient.addColorStop(1, 'rgba(255,255,255,0)');
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, 32, 32);
   const points = new THREE.Points(
     geometry,
     new THREE.PointsMaterial({
       color,
-      size: 0.075,
+      map: new THREE.CanvasTexture(canvas),
+      size: 0.14,
       transparent: true,
       opacity: 0.95,
-      depthTest: false,
+      depthTest: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      toneMapped: false,
     }),
   );
   world.content.add(points);

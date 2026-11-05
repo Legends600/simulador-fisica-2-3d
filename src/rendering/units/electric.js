@@ -1,23 +1,33 @@
 import * as THREE from 'three';
-import {
-  electricAt,
-  magneticAt,
-  traceField,
-  equipotentialMesh,
-  norm,
-  sub,
-  unit,
-} from '../../core/physics.js';
+import { electricAt, traceField, equipotentialMesh, norm, sub, unit } from '../../core/physics.js';
 import { COLORS } from '../palette.js';
 import { addFlow } from '../motion.js';
+import { material, ring, glow, platform, print } from '../models.js';
 export function drawElectric(s) {
   this.clear();
+  this.setLaboratory('electric');
+  platform(this, -2.9, 2.9);
   const charges = s.charges,
     positivePaths = [],
     negativePaths = [];
   charges.forEach((c, i) => {
-    const charge = this.sphere(c.position, 0.19, c.q >= 0 ? COLORS.positive : COLORS.negative);
+    const color = c.q >= 0 ? COLORS.positive : COLORS.negative;
+    const charge = this.sphere(c.position, 0.22, color);
     charge.userData.chargeIndex = i;
+    charge.name = 'electrode';
+    ring(
+      charge,
+      [0, 0, 0],
+      0.26,
+      0.012,
+      material(color, { emissive: color, emissiveIntensity: 0.6 }),
+      [Math.PI / 2, 0, 0],
+    );
+    glow(charge, [0, 0, 0], color, 1.1);
+    print(charge, c.q > 0 ? '+' : c.q < 0 ? '−' : '0', [0, 0, 0.227], 0.22, 0.22, {
+      color: '#fff6dd',
+      font: '700',
+    });
     this.label(
       `${c.q >= 0 ? '+' : ''}${Number((c.q * 1e9).toFixed(2))} nC`,
       [c.position[0], c.position[1] + 0.42, c.position[2]],
@@ -46,7 +56,7 @@ export function drawElectric(s) {
           direction,
           stop: (p) => charges.some((ch) => norm(sub(p, ch.position)) < 0.16),
         });
-        this.line(points, c.q > 0 ? COLORS.positive : COLORS.negative, 0.46);
+        this.fieldLine(points, c.q > 0 ? COLORS.positive : COLORS.negative, 0.62);
         if (c.q > 0) positivePaths.push(points);
         else negativePaths.push([...points].reverse());
         if (points.length > 12) {
@@ -104,6 +114,6 @@ export function drawElectric(s) {
   }
   addFlow(this, positivePaths, { color: COLORS.positive, count: 2 });
   addFlow(this, negativePaths, { color: COLORS.negative, count: 2 });
-  this.probe = this.sphere(s.probe, 0.065, 0xeef6ff);
+  this.probe = this.measurementProbe(s.probe);
   this.label('P', [s.probe[0] + 0.18, s.probe[1] + 0.2, s.probe[2]], '#e4f1ff', 0.26);
 }

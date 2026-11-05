@@ -9,6 +9,19 @@ const files = [
   ['node_modules/three/examples/jsm/controls/OrbitControls.js', 'addons/controls/OrbitControls.js'],
   ['node_modules/three/LICENSE', 'THREE-LICENSE.txt'],
 ];
+for (const file of [
+  'postprocessing/EffectComposer.js',
+  'postprocessing/RenderPass.js',
+  'postprocessing/UnrealBloomPass.js',
+  'postprocessing/OutputPass.js',
+  'postprocessing/Pass.js',
+  'postprocessing/ShaderPass.js',
+  'postprocessing/MaskPass.js',
+  'shaders/CopyShader.js',
+  'shaders/LuminosityHighPassShader.js',
+  'shaders/OutputShader.js',
+])
+  files.push([`node_modules/three/examples/jsm/${file}`, `addons/${file}`]);
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
 export async function verifyVendor() {

@@ -60,7 +60,7 @@
         ><a href="docs/informe.html">↗ Informe técnico</a
         ><a href="docs/presentacion.html">↗ Presentación</a
         ><a href="#project-team">↗ Equipo del proyecto</a>
-        <div class="version">FÍSICA II <span>v2.1</span></div>
+        <div class="version">FÍSICA II <span>v2.2</span></div>
       </div>
     </aside>
     <main id="workspace">
@@ -112,6 +112,14 @@
                 ><span id="scene-subtitle">ESPACIO 3D</span>
               </div>
               <div class="view-actions">
+                <select
+                  id="render-quality"
+                  aria-label="Calidad del renderizado"
+                  title="Estudio: sombras, reflejos y brillo. Ligero: menos carga gráfica."
+                >
+                  <option value="studio">Render estudio</option>
+                  <option value="light">Render ligero</option>
+                </select>
                 <button class="active" id="view-3d" aria-pressed="true">3D</button
                 ><button id="view-2d" aria-pressed="false">2D</button
                 ><button id="home-camera" title="Centrar cámara" aria-label="Centrar cámara">

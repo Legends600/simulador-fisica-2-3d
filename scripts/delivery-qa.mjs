@@ -70,9 +70,10 @@ try {
     await assert.rejects(access(removed));
   assert.deepEqual(errors, []);
   const ui = JSON.parse(await readFile('.qa/ui-results.json', 'utf8')),
-    animation = JSON.parse(await readFile('.qa/animation-results.json', 'utf8'));
+    animation = JSON.parse(await readFile('.qa/animation-results.json', 'utf8')),
+    rendering = JSON.parse(await readFile('.qa/rendering/results.json', 'utf8'));
   const validation = {
-    date: '2026-11-04',
+    date: new Date().toISOString().slice(0, 10),
     version: project.version,
     physics: { passed: 31, failed: 0 },
     playback: { passed: 3, failed: 0 },
@@ -80,6 +81,11 @@ try {
     staticServer: JSON.parse(await readFile('.qa/static/results.json', 'utf8')),
     interface: { passed: ui.checks.length, checks: ui.checks, browser: ui.browser },
     animation: { passed: animation.checks.length, checks: animation.checks },
+    rendering: {
+      passed: rendering.checks.length,
+      checks: rendering.checks,
+      errors: rendering.errors,
+    },
     delivery: {
       pages: ['manual.html', 'informe.html', 'presentacion.html'],
       slides: slides.length,

@@ -5,5 +5,5 @@ export const project = Object.freeze({
   cycle: '4to ciclo',
   teacher: 'Ramiro Manrique Rua',
   members: ['Omar Tineo', 'Anthuanet Reynoso', 'Moises Morales'],
-  version: '2.1.0',
+  version: '2.2.0',
 });

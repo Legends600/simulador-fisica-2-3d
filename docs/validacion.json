@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-04",
-  "version": "2.1.0",
+  "date": "2026-11-05",
+  "version": "2.2.0",
   "physics": {
     "passed": 31,
     "failed": 0
@@ -14,7 +14,7 @@
     "failed": 0
   },
   "staticServer": {
-    "target": "source",
+    "target": "distribution",
     "checks": [
       "Inicio desde servidor estático en subcarpeta, sin node_modules ni rutas especiales",
       "Las cuatro unidades cargan sus controles y escenas",
@@ -113,6 +113,17 @@
       "Pausa y paso controlan también el tiempo físico de Lorentz",
       "Equipo correcto e interfaz sin enlaces al video"
     ]
+  },
+  "rendering": {
+    "passed": 5,
+    "checks": [
+      "Los cuatro montajes se renderizan con materiales, iluminación, sombras y posprocesado",
+      "Render ligero operativo y capacitor editable en los límites de área, separación y dieléctrico",
+      "La carga RC actualiza el visor sin recrear geometrías ni texturas",
+      "La captura PNG utiliza el mismo renderizado que la escena",
+      "Móvil inicia con render ligero y sin desbordamiento horizontal"
+    ],
+    "errors": []
   },
   "delivery": {
     "pages": [

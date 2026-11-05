@@ -217,7 +217,7 @@ function draw(reset = true) {
   $('#view-3d').disabled = false;
   $('#home-camera').disabled = false;
   $('#capture').disabled = false;
-  $('#scene-subtitle').textContent = view === '3d' ? 'ESPACIO 3D' : 'VISTA XY';
+  $('#scene-subtitle').textContent = view === '3d' ? 'MODELO DE LABORATORIO' : 'VISTA XY';
   $('#scene-hint').textContent = isCircuit
     ? 'Pulsa una resistencia para editar · Arrastra para orbitar'
     : view === '2d'
@@ -293,7 +293,7 @@ function draw(reset = true) {
             wire: 'Conductor infinito sobre el eje z',
             loop: 'Biot–Savart · integración con 128 segmentos',
           }[s.source]
-        : 'Escala de laboratorio · q en C, m en kg';
+        : 'Campos uniformes ideales · montaje ilustrativo · q en C, m en kg';
     $('#explanation').innerHTML = explain(
       s.mode === 'field'
         ? 'El magnetismo tiene dirección.'
@@ -536,7 +536,9 @@ function advance(elapsed, now) {
     if (now - uiTime > 70) {
       $('#rc-time').value = s.tauTime.toFixed(2);
       $('#rc-time-range').value = s.tauTime;
-      draw(false);
+      world?.circuitVisual?.update(s);
+      $('#schematic').innerHTML = circuitMarkup(s);
+      updateResults();
       uiTime = now;
     }
     if (s.tauTime >= 5) {
@@ -612,6 +614,8 @@ for (const v of ['2d', '3d'])
     draw();
   };
 $('#home-camera').onclick = () => world?.home();
+$('#render-quality').value = world?.quality || 'light';
+$('#render-quality').onchange = (event) => world?.setQuality(event.target.value);
 $('#capture').onclick = () => {
   if (world) download(`flux-${active}.png`, world.saveImage(), 'image/png');
 };
@@ -707,8 +711,14 @@ window.FLUX = {
     world
       ? {
           geometries: world.renderer.info.memory.geometries,
+          textures: world.renderer.info.memory.textures,
           calls: world.renderer.info.render.calls,
           objects: world.content.children.length,
+          triangles: world.renderer.info.render.triangles,
+          studio: Boolean(world.scene.environment),
+          quality: world.quality,
+          shadows: world.renderer.shadowMap.enabled,
+          models: world.content.children.filter((o) => o.name).map((o) => o.name),
         }
       : null,
   setUnit,

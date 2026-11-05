@@ -1,4 +1,27 @@
 /* Layout and readable controls shared by the four experiments. */
+#render-quality {
+  font: inherit;
+  font-size: 11px;
+  color: #afc8d7;
+  background: #1b3345;
+  border: 1px solid #365064;
+  border-radius: 5px;
+  padding: 6px 5px;
+  max-width: 125px;
+}
+@media (max-width: 700px) {
+  #scene-subtitle {
+    display: none;
+  }
+  #render-quality {
+    max-width: 108px;
+    font-size: 10px;
+  }
+  .viewport-toolbar {
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+}
 :root {
   --lab-blue: #003b65;
   --lab-ink: #203e56;

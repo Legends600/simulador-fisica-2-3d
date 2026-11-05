@@ -21,6 +21,17 @@ Proyecto grupal de la **Universidad Peruana Unión**, Ingeniería Sistemas e Inf
 
 Todas las unidades tienen pausa, reproducción, velocidad y avance por pasos. Los marcadores de campo y corriente usan un tiempo visual; las trayectorias y la carga RC muestran sus magnitudes físicas en SI. El manual explica esta distinción.
 
+## Modelos de laboratorio y acabado 3D
+
+El render **Estudio** incorpora reflejos de un entorno de iluminación generado localmente, materiales metálicos y cerámicos, bordes biselados, sombras y brillo suave. El selector junto a **3D / 2D** permite cambiar a **Render ligero** para reducir la carga gráfica; conserva los modelos y las interacciones. En móviles se inicia en modo ligero.
+
+- **Campo eléctrico:** electrodos esféricos con signos, aros, sonda y curvas con volumen y trazadores luminosos.
+- **Capacitor:** placas metálicas sobre aisladores, bornes, fuente CC con visor, cables independientes y bloque dieléctrico transparente. El área y la separación responden a los parámetros.
+- **Circuitos:** placa con pistas y soldaduras, batería, resistencias axiales con bandas y capacitor electrolítico en RC. El visor de medición se actualiza durante la carga sin reconstruir la placa.
+- **Magnetismo:** imán de barra con polos, conductor y espira de cobre sobre soportes. Lorentz incorpora un montaje abierto que deja ver la trayectoria.
+
+La geometría ilustra los modelos ideales del curso. Las dimensiones ampliadas del capacitor y los soportes no modifican las ecuaciones. Todos los recursos siguen incluidos para Go Live y el uso sin CDN.
+
 ## Entregables
 
 | Archivo                 | Acceso                                                                                                                                                                                        |
@@ -53,7 +64,7 @@ npm run build
 npm start
 ```
 
-**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.1.0/fisica-ii-upeu-v2.1.0.zip)**. Descomprime y abre con Live Server, o ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
+**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.2.0/fisica-ii-upeu-v2.2.0.zip)**. Descomprime y abre con Live Server, o ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
 
 ## Estructura del proyecto
 
@@ -73,6 +84,8 @@ src/
   rendering/
     world.js                Cámara, recursos WebGL y utilidades de escena
     motion.js               Trazadores e interacción con objetos
+    models.js               Piezas, materiales y texturas de laboratorio
+    studio.js               Iluminación, reflejos, sombras y posprocesado
     units/                  Escenas 3D de las cuatro unidades
   ui/                       Componentes, controles y gráficas SVG
 assets/brand/               Logo institucional original
@@ -98,6 +111,7 @@ Con `npm run dev` abierto en otra terminal:
 npx playwright install chromium
 npm run test:ui
 npm run test:animations
+npm run test:rendering
 npm run test:delivery
 npm run test:static
 ```

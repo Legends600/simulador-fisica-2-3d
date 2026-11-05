@@ -6,3 +6,5 @@
 - **Zenitani y Umeda (2018)**: referencia para el integrador de Boris. https://arxiv.org/abs/1809.04378
 
 Las capturas corresponden a la aplicación de este repositorio. La presentación editable se generó con Artifact Tool; el runtime de autoría no forma parte de la aplicación distribuida.
+
+Los modelos 3D de laboratorio, los textos impresos y el entorno de reflejos se generan mediante código del proyecto. El posprocesado utiliza los módulos locales de Three.js EffectComposer, UnrealBloomPass y OutputPass, cubiertos por la misma licencia MIT. No se descargan modelos ni mapas HDR durante la ejecución.
