@@ -1,6 +1,6 @@
 {
   "name": "simulador-fisica-2-3d",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Laboratorio interactivo de electricidad y magnetismo para Física II",
   "type": "module",
@@ -11,14 +11,17 @@
     "dev": "node scripts/server.mjs",
     "start": "node scripts/server.mjs --dist",
     "build": "node scripts/build.mjs",
-    "test": "node --test tests/physics.test.mjs",
+    "test": "node --test tests/physics.test.mjs tests/playback.test.mjs tests/experiments.test.mjs",
     "test:ui": "node scripts/qa.mjs",
-    "demo:record": "node scripts/record-demo.mjs"
+    "format": "prettier --write src scripts tests index.html docs/*.js docs/*.css",
+    "test:animations": "node scripts/animation-qa.mjs",
+    "test:delivery": "node scripts/delivery-qa.mjs"
   },
   "dependencies": {
     "three": "0.187.0"
   },
   "devDependencies": {
-    "playwright": "1.64.1"
+    "playwright": "1.64.1",
+    "prettier": "3.9.10"
   }
 }

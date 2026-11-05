@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .qa/
+.chart-data-*/
 .DS_Store
 *.log
 .env

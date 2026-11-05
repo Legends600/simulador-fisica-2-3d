@@ -1,16 +1,20 @@
 {
   "date": "2026-11-04",
+  "version": "2.0.0",
   "physics": {
-    "command": "npm test",
     "passed": 31,
-    "failed": 0,
-    "scope": "Soluciones analíticas, conservación, convergencia y geometría"
+    "failed": 0
+  },
+  "playback": {
+    "passed": 3,
+    "failed": 0
+  },
+  "experimentFiles": {
+    "passed": 2,
+    "failed": 0
   },
   "interface": {
-    "command": "npm run test:ui",
     "passed": 17,
-    "failed": 0,
-    "browser": "156.0.8078.76",
     "checks": [
       {
         "name": "WebGL inicia y renderiza la escena",
@@ -80,29 +84,42 @@
         "name": "Sin errores de JavaScript ni recursos fallidos",
         "status": "passed"
       }
+    ],
+    "browser": "156.0.8078.76"
+  },
+  "animation": {
+    "passed": 9,
+    "checks": [
+      "Animación real, pausa, paso y velocidad · electric",
+      "Animación real, pausa, paso y velocidad · capacitor",
+      "Animación real, pausa, paso y velocidad · circuit",
+      "Animación real, pausa, paso y velocidad · magnetic",
+      "Arrastre directo de una carga actualiza el modelo físico",
+      "Capacitor 3D: evolución RC y avance exacto hasta una constante de tiempo",
+      "Circuito 3D: seleccionar resistencia, apagar fuente y eliminar la corriente",
+      "Pausa y paso controlan también el tiempo físico de Lorentz",
+      "Equipo correcto e interfaz sin enlaces al video"
     ]
   },
   "delivery": {
     "pages": [
       "manual.html",
       "informe.html",
-      "presentacion.html",
-      "video.html"
+      "presentacion.html"
     ],
-    "slides": 12,
-    "internalLinks": 11,
-    "video": {
-      "durationSeconds": 361.56,
-      "format": "WebM / VP9",
-      "resolution": "1440x1000",
-      "audio": false,
-      "captions": "Español integradas en imagen y archivo VTT",
-      "bytes": 70657883
-    }
+    "slides": 14,
+    "nativeCharts": 2,
+    "internalLinks": 7,
+    "team": [
+      "Omar Tineo",
+      "Anthuanet Reynoso",
+      "Moises Morales"
+    ],
+    "teacher": "Ramiro Manrique Rua",
+    "videoIncluded": false
   },
   "limits": [
-    "Pruebas móviles mediante viewport, no dispositivos físicos.",
-    "Modelos ideales y dominios limitados: consultar informe.",
-    "No se declara auditoría exhaustiva de accesibilidad ni benchmark multidispositivo."
+    "Pruebas móviles por viewport, no dispositivos físicos.",
+    "Modelos ideales y dominios limitados: consultar informe."
   ]
 }

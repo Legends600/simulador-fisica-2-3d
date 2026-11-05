@@ -48,7 +48,6 @@ Modelamiento, funciones puras comprobables, validación de entradas, separación
 ## Preparación antes de clase
 
 - Abrir el simulador y comprobar WebGL en el equipo de exposición.
-- Descargar el video para tener una demostración disponible sin depender de Internet.
 - Guardar los experimentos clave en JSON y familiarizarse con la interpretación de cada resultado.
-- Ensayar la exposición con las notas; adaptar los datos institucionales o integrantes si el curso los exige.
+- Ensayar la exposición con las notas; revisar que los nombres del grupo y del docente coincidan con la lista del curso.
 - La presentación es material de apoyo. La defensa presencial corresponde al estudiante.

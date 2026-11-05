@@ -1,104 +1,115 @@
-# FLUX · Simulador de Física II
+# Física II · Laboratorio interactivo UPeU
 
-Laboratorio interactivo de campos eléctricos y magnéticos en **2D y 3D**, capacitores y circuitos. Interfaz en español, cálculos en unidades SI y experimentos reproducibles.
+Proyecto grupal de la **Universidad Peruana Unión**, Ingeniería Sistemas e Informática, **4to ciclo**.
 
-![Laboratorio FLUX](assets/screenshots/campo-electrico.png)
+**Integrantes:** Omar Tineo, Anthuanet Reynoso y Moises Morales.
 
-## Utilizar el simulador
+**Docente:** Ramiro Manrique Rua.
 
-**[Abrir aplicación web](https://legends600.github.io/simulador-fisica-2-3d/)**
+![Laboratorio de Física II](assets/screenshots/campo-electrico.png)
 
-**[Descargar paquete listo para ejecutar](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v1.0.0/flux-fisica-2-v1.0.0.zip)**. Descomprímelo, abre una terminal en la carpeta y ejecuta `node server.mjs`. El paquete incluye las dependencias gráficas y todos los entregables; requiere Node.js 22 o posterior.
+**[Abrir simulador](https://legends600.github.io/simulador-fisica-2-3d/)** · **[Manual detallado](https://legends600.github.io/simulador-fisica-2-3d/docs/manual.html)** · **[Presentación](https://legends600.github.io/simulador-fisica-2-3d/docs/presentacion.html)**
 
-Para ejecutarlo desde el código fuente, instala **Node.js 22 o posterior** y abre una terminal en el proyecto:
+## Cuatro unidades con escenas 3D
+
+| Unidad                   | Experimentos e interacción                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Electricidad y potencial | Hasta 10 cargas. Arrastre directo, líneas con trazadores animados, vectores, equipotenciales 2D/3D, sonda y trayectorias eléctricas.                               |
+| Capacitores              | Placas y dipolos dieléctricos, área y distancia configurables, energía y carga RC con resistencia ajustable.                                                       |
+| Circuitos                | Placa 3D de redes serie/paralelo/mixtas. Corriente convencional animada, selección de resistencias y fuente conmutable. Esquema, tabla y gráfica del mismo modelo. |
+| Magnetismo               | Imán, conductor y espira con trazadores de B. Fuerza de Lorentz, hélices y selector de velocidades con E y B cruzados.                                             |
+
+Todas las unidades tienen pausa, reproducción, velocidad y avance por pasos. Los marcadores de campo y corriente usan un tiempo visual; las trayectorias y la carga RC muestran sus magnitudes físicas en SI. El manual explica esta distinción.
+
+## Entregables
+
+| Archivo                 | Acceso                                                                                                                                                                                        |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manual de uso           | [Manual web](https://legends600.github.io/simulador-fisica-2-3d/docs/manual.html) con controles, experimentos, animaciones y solución de problemas                                            |
+| Informe técnico         | [Fundamentos, arquitectura, algoritmos y validación](https://legends600.github.io/simulador-fisica-2-3d/docs/informe.html)                                                                    |
+| Presentación para clase | [14 diapositivas web](https://legends600.github.io/simulador-fisica-2-3d/docs/presentacion.html) y [PowerPoint editable](docs/presentacion-fisica-ii-upeu.pptx), con notas y gráficas nativas |
+| Apoyo de exposición     | [Guía de defensa](docs/defensa.md)                                                                                                                                                            |
+| Registro de pruebas     | [Validación](docs/validacion.json)                                                                                                                                                            |
+
+El logo institucional es el original proporcionado por el equipo. Los datos académicos se mantienen en `src/config/project.js`. La presentación usa las flechas del teclado, **N** para las notas y **F** para pantalla completa. El manual y el informe permiten imprimir o guardar como PDF desde el navegador.
+
+## Ejecutar en el equipo
+
+Se requiere **Node.js 22 o posterior** y un navegador con WebGL 2.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Abre **http://127.0.0.1:4173**. Se requiere HTTP: no abras `index.html` con doble clic. Los módulos 3D necesitan WebGL 2. Después de instalar las dependencias, la aplicación funciona localmente sin CDN ni servicios externos.
+Abre **http://127.0.0.1:4173**. Se utiliza un servidor HTTP para cargar módulos JavaScript. Después de instalar las dependencias, el simulador no necesita CDN ni servicios externos.
 
 ```sh
-npm run build   # Genera dist/ con Three.js y todos los recursos locales
-npm start       # Sirve la versión distribuible
+npm run build
+npm start
 ```
 
-## Entregables
+**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.0.0/fisica-ii-upeu-v2.0.0.zip)**. Descomprime y ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
 
-| Entregable | Acceso |
-| --- | --- |
-| Código fuente | Este repositorio; motor físico en `src/physics.js` |
-| Manual de usuario | [Manual web](https://legends600.github.io/simulador-fisica-2-3d/docs/manual.html) |
-| Informe técnico | [Fundamentos, arquitectura, algoritmos y validación](https://legends600.github.io/simulador-fisica-2-3d/docs/informe.html) |
-| Video demostrativo | [Reproductor y capítulos](https://legends600.github.io/simulador-fisica-2-3d/docs/video.html) · [archivo WebM](docs/media/demostracion-flux.webm) |
-| Presentación para la defensa | [Presentación web](https://legends600.github.io/simulador-fisica-2-3d/docs/presentacion.html) · [PowerPoint editable](docs/presentacion-flux.pptx) |
-| Apoyo para exponer | [Guía de defensa](docs/defensa.md) · [guion del video](docs/guion-video.md) |
-| Verificación | [Registro de validación](docs/validacion.json) |
+## Estructura del proyecto
 
-El video dura aproximadamente **6 minutos**, muestra la aplicación real y contiene subtítulos integrados en español. **No tiene pista de audio.** La presentación contiene 12 diapositivas y notas del expositor. En su versión web: flechas para avanzar, **N** para notas y **F** para pantalla completa. El manual y el informe incluyen un estilo de impresión para guardarlos como PDF desde el navegador.
+```text
+src/
+  app.js                    Coordinación del estado y navegación
+  config/                   Parámetros iniciales y datos del equipo
+  core/
+    physics.js              Ecuaciones y algoritmos independientes del navegador
+    experiments.js          Validación de archivos de experimentos
+    playback.js             Reloj por unidad, pausa, velocidad y pasos
+  modules/
+    electric/controls.js    Unidad 1
+    capacitor/controls.js   Unidad 2
+    circuit/controls.js     Unidad 3
+    magnetic/controls.js    Unidad 4
+  rendering/
+    world.js                Cámara, recursos WebGL y utilidades de escena
+    motion.js               Trazadores e interacción con objetos
+    units/                  Escenas 3D de las cuatro unidades
+  ui/                       Componentes, controles y gráficas SVG
+assets/brand/               Logo institucional original
+docs/                       Manual, informe, presentación y defensa
+tests/                      Soluciones analíticas y reloj de reproducción
+scripts/                    Build, servidor, documentación y QA
+```
 
-## Funcionalidades por unidad
+Three.js es la dependencia de ejecución. Playwright se usa para verificación y Prettier para mantener formato consistente. El build parte de una carpeta limpia e incorpora las bibliotecas gráficas localmente.
 
-| Unidad | Implementación |
-| --- | --- |
-| Electricidad y potencial | Hasta 10 cargas editables; presets; líneas y vectores de campo; curvas y superficies equipotenciales; sonda de potencial; trayectorias de partículas |
-| Capacitores y dieléctricos | Placas 3D; área, separación y permitividad; cálculo de C, Q, U y E |
-| Corriente y ley de Ohm | Circuitos serie, paralelo y mixtos; hasta 4 etapas con 4 ramas; voltaje, corriente y potencia por resistencia; gráfica I–V; carga y descarga RC |
-| Fuerza y campo magnético | Imán dipolar, conductor infinito y espira; sonda vectorial; trayectorias de Lorentz con campos E y B cruzados |
-
-También permite guardar/abrir experimentos JSON, descargar capturas PNG y exportar trayectorias CSV con tiempo, posición y velocidad en SI.
-
-## Pruebas
+## Validación
 
 ```sh
 npm test
 ```
 
-Los casos verifican soluciones analíticas, simetrías, Kirchhoff, balance de potencia, energía magnética y convergencia de orden dos del integrador. No comparan únicamente la implementación consigo misma.
+Se contrastan Coulomb, potencial, capacitores, circuitos RC, Kirchhoff, hilo y espira con soluciones conocidas. También se verifican conservación de rapidez, convergencia de Boris, geometría equipotencial y comportamiento del reloj.
 
-Para las pruebas de interfaz, inicia primero `npm run dev` en otra terminal:
+Con `npm run dev` abierto en otra terminal:
 
 ```sh
 npx playwright install chromium
 npm run test:ui
+npm run test:animations
+npm run test:delivery
 ```
 
-En Windows, el script puede utilizar Chrome o Edge ya instalados en un perfil temporal aislado. `BROWSER_PATH` permite elegir otro ejecutable; `BASE_URL` permite indicar otra dirección. Se prueban entradas, exportación/importación, animaciones, 390/768 px y errores de recursos. Las capturas se guardan en `assets/`; los registros temporales quedan en `.qa/` (ignorado por Git).
-
-## Arquitectura
-
-```text
-src/physics.js    Funciones puras y algoritmos físicos
-src/scene.js      Three.js: escena, líneas, mallas y cámara
-src/charts.js     Esquemas y gráficas SVG
-src/app.js        Estado, controles y archivos de experimentos
-tests/           Casos analíticos y propiedades físicas
-scripts/         Servidor, build, QA y generación de entregables
-docs/            Manual, informe, diapositivas, video y defensa
-```
-
-Three.js es la única dependencia de ejecución. No hay backend, cuentas, analítica ni servicios de pago. `npm run build` incorpora Three.js localmente y conserva su licencia.
+Las pruebas comprueban cambio real de posiciones en las cuatro animaciones, pausa, avance por pasos, arrastre de cargas, selección de resistencias, apagado de fuente, carga RC, archivos JSON/CSV y vistas de 390/768 px. Chrome o Edge pueden usarse en Windows mediante un perfil temporal aislado. `BROWSER_PATH` y `BASE_URL` permiten configurar el entorno de pruebas.
 
 ## Modelos y límites
 
-- Fuentes eléctricas fijas y partículas de prueba clásicas. Se detiene la trayectoria al alcanzar una carga, salir del radio de 8 m o llegar a los límites de tiempo/muestras.
-- Las líneas tienen una densidad elegida para visualización; la sonda proporciona las magnitudes físicas. En vista XY, las curvas equipotenciales se calculan en z = 0.
-- Capacitor ideal de placas paralelas con V constante, sin efecto de borde ni pérdidas.
-- Circuitos reducibles por etapas serie/paralelo; una fuente de CC y un capacitor en el modo RC. No resuelve puentes arbitrarios, CA o RLC.
-- Dipolo ideal, hilo infinito y espira de filamento. Las sondas señalan las regiones excluidas.
-- Los valores q y m en Lorentz son didácticos (C y kg), no parámetros de un electrón real.
+El motor utiliza SI. Las cargas son fuentes fijas y las partículas, pruebas clásicas sin retroacción. El capacitor ideal desprecia efectos de borde. El circuito admite hasta cuatro etapas serie con cuatro ramas paralelas cada una, CC y un capacitor en RC. El imán se aproxima por un dipolo y las corrientes por filamentos ideales. Los trazadores ilustran dirección y corriente convencional; su rapidez no representa propagación electromagnética ni deriva electrónica. Consulta el informe para las exclusiones, el integrador y los dominios de cálculo.
 
-Consulta el [informe técnico](docs/informe.html) para las ecuaciones, las aproximaciones numéricas y las referencias. El archivo Word original se usó como especificación y no se publica.
+Los experimentos se guardan en JSON; las trayectorias se exportan a CSV y las escenas a PNG. El equipo prepara la exposición con la presentación y la guía de defensa.
 
-## Reproducir los entregables
+## Regenerar documentos
 
 ```sh
-node scripts/docs.mjs          # Manual, informe y reproductor
-node scripts/slides-web.mjs    # Presentación web desde docs/slides-data.js
-npm run demo:record            # Recorrido real de 6 minutos; requiere servidor y navegador
+node scripts/docs.mjs
+node scripts/slides-web.mjs
+npm run format
 ```
 
-La generación opcional del PowerPoint usa el runtime Artifact Tool de Codex; el archivo final ya se incluye y no requiere ese runtime para abrirse. `scripts/slides-pptx.mjs` acepta `ARTIFACT_MODULE`, `PRESENTATION_SKILL_DIR` y `CODEX_ARTIFACT_RUNTIME`. La aplicación y su build son independientes de esas herramientas.
-
-La publicación en GitHub Pages se hace mediante el workflow incluido. Primero ejecuta pruebas, luego empaqueta `dist/` y despliega la misma versión.
+El PowerPoint final ya está incluido. Su generador opcional requiere el runtime Artifact Tool de Codex y las variables `CODEX_ARTIFACT_RUNTIME` y `PRESENTATION_SKILL_DIR`. El funcionamiento y el build de la aplicación son independientes de ese runtime.

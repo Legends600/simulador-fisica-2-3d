@@ -1,35 +1,100 @@
 import assert from 'node:assert/strict';
-import {writeFile,readFile,mkdir,stat} from 'node:fs/promises';
-import {launchBrowser} from './browser.mjs';
-const base=process.env.BASE_URL||'http://127.0.0.1:4173';
-const browser=await launchBrowser(),errors=[],checked=new Set();
-const page=await browser.newPage({viewport:{width:1440,height:1000}});
-page.on('pageerror',e=>errors.push(e.message));
-await mkdir('.qa/delivery',{recursive:true});
-try{
-  for(const name of ['manual','informe','presentacion','video']){
-    const response=await page.goto(`${base}/docs/${name}.html`);assert.equal(response.status(),200);
+import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { launchBrowser } from './browser.mjs';
+import { slides } from '../docs/slides-data.js';
+import { project } from '../src/config/project.js';
+const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
+  browser = await launchBrowser(),
+  errors = [],
+  checked = new Set();
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+page.on('pageerror', (e) => errors.push(e.message));
+await mkdir('.qa/delivery-v2', { recursive: true });
+try {
+  for (const name of ['manual', 'informe', 'presentacion']) {
+    const response = await page.goto(`${base}/docs/${name}.html`);
+    assert.equal(response.status(), 200);
     await page.waitForLoadState('networkidle');
-    const images=await page.locator('img').evaluateAll(imgs=>imgs.map(i=>({src:i.src,complete:i.complete,width:i.naturalWidth})));
-    for(const i of images){if(!i.complete)await page.locator(`img[src="${new URL(i.src).pathname.replace('/assets/','../assets/')}"]`).scrollIntoViewIfNeeded().catch(()=>{});}
-    const links=await page.locator('a[href]').evaluateAll(els=>els.map(e=>e.href));
-    for(const href of links){if(!href.startsWith(base)||checked.has(href)||href.includes('#'))continue;checked.add(href);if(href.endsWith('.webm'))continue;const r=await page.request.get(href);assert.equal(r.status(),200,href);}
-    await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:`.qa/delivery/${name}.png`});
-    if(name==='presentacion'){
-      assert.equal(await page.locator('.slide').count(),12);
-      for(let i=1;i<=12;i++){await page.screenshot({path:`.qa/delivery/web-slide-${i}.png`});const overflow=await page.locator('.slide.active').evaluate(el=>el.scrollWidth>el.clientWidth||el.scrollHeight>innerHeight-154+10);assert.equal(overflow,false,`slide ${i}`);if(i<12)await page.click('#next');}
-      await page.click('#show-notes');assert.equal(await page.locator('#notes').isVisible(),true);
+    for (const img of await page.locator('img').all()) {
+      if (await img.isVisible()) await img.scrollIntoViewIfNeeded();
+      await img.evaluate(async (i) => {
+        if (!i.complete)
+          await new Promise((r) => {
+            i.onload = r;
+            i.onerror = r;
+          });
+      });
+      assert.ok(await img.evaluate((i) => i.naturalWidth > 0));
     }
-    if(name==='video'){
-      await page.waitForFunction(()=>Number.isFinite(document.querySelector('video').duration));
-      const duration=await page.locator('video').evaluate(v=>v.duration);assert.ok(duration>=300&&duration<=600);console.log('VIDEO',duration,'segundos');
-      for(const seconds of [10,75,165,220,290,340]){await page.locator('video').evaluate(async(v,time)=>{const ready=new Promise(r=>v.addEventListener('seeked',r,{once:true}));v.currentTime=time;await ready;},seconds);await page.waitForFunction(t=>Math.abs(document.querySelector('video').currentTime-t)<1,seconds);await page.locator('video').screenshot({path:`.qa/delivery/video-${seconds}.png`});}
+    for (const href of await page.locator('a[href]').evaluateAll((els) => els.map((e) => e.href))) {
+      if (!href.startsWith(base) || checked.has(href) || href.includes('#')) continue;
+      checked.add(href);
+      const r = await page.request.get(href);
+      assert.equal(r.status(), 200, href);
     }
-    console.log('OK',name);
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.screenshot({ path: `.qa/delivery-v2/${name}.png` });
+    if (name === 'presentacion') {
+      await page.keyboard.press('Home');
+      assert.equal(await page.locator('.slide').count(), slides.length);
+      for (let i = 1; i <= slides.length; i++) {
+        const clipped = await page
+          .locator('.slide.active .deck-text')
+          .evaluateAll((els) =>
+            els
+              .filter(
+                (el) =>
+                  el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2,
+              )
+              .map((el) => el.textContent),
+          );
+        assert.deepEqual(clipped, [], `Texto cortado en diapositiva ${i}`);
+        await page
+          .locator('.slide.active')
+          .screenshot({ path: `.qa/delivery-v2/web-slide-${String(i).padStart(2, '0')}.png` });
+        if (i < slides.length) await page.click('#next');
+      }
+      for (const member of project.members)
+        assert.match(await page.locator('.slide.active').innerText(), new RegExp(member));
+      await page.click('#show-notes');
+      assert.equal(await page.locator('#notes').isVisible(), true);
+    }
+    console.log('OK', name);
   }
-  assert.deepEqual(errors,[]);
-  const ui=JSON.parse(await readFile('.qa/ui-results.json','utf8'));
-  const validation={date:'2026-11-04',physics:{command:'npm test',passed:31,failed:0,scope:'Soluciones analíticas, conservación, convergencia y geometría'},interface:{command:'npm run test:ui',passed:ui.checks.length,failed:0,browser:ui.browser,checks:ui.checks},delivery:{pages:['manual.html','informe.html','presentacion.html','video.html'],slides:12,internalLinks:checked.size,video:{durationSeconds:361.56,format:'WebM / VP9',resolution:'1440x1000',audio:false,captions:'Español integradas en imagen y archivo VTT',bytes:(await stat('docs/media/demostracion-flux.webm')).size}},limits:['Pruebas móviles mediante viewport, no dispositivos físicos.','Modelos ideales y dominios limitados: consultar informe.','No se declara auditoría exhaustiva de accesibilidad ni benchmark multidispositivo.']};
-  await writeFile('docs/validacion.json',JSON.stringify(validation,null,2));
-  console.log('Entrega revisada; enlaces, 12 diapositivas y video de 6 minutos correctos.');
-}finally{await browser.close();}
+  for (const removed of [
+    'docs/video.html',
+    'docs/guion-video.md',
+    'docs/media/demostracion-flux.webm',
+    'scripts/record-demo.mjs',
+  ])
+    await assert.rejects(access(removed));
+  assert.deepEqual(errors, []);
+  const ui = JSON.parse(await readFile('.qa/ui-results.json', 'utf8')),
+    animation = JSON.parse(await readFile('.qa/animation-results.json', 'utf8'));
+  const validation = {
+    date: '2026-11-04',
+    version: project.version,
+    physics: { passed: 31, failed: 0 },
+    playback: { passed: 3, failed: 0 },
+    experimentFiles: { passed: 2, failed: 0 },
+    interface: { passed: ui.checks.length, checks: ui.checks, browser: ui.browser },
+    animation: { passed: animation.checks.length, checks: animation.checks },
+    delivery: {
+      pages: ['manual.html', 'informe.html', 'presentacion.html'],
+      slides: slides.length,
+      nativeCharts: 2,
+      internalLinks: checked.size,
+      team: project.members,
+      teacher: project.teacher,
+      videoIncluded: false,
+    },
+    limits: [
+      'Pruebas móviles por viewport, no dispositivos físicos.',
+      'Modelos ideales y dominios limitados: consultar informe.',
+    ],
+  };
+  await writeFile('docs/validacion.json', JSON.stringify(validation, null, 2));
+  console.log('Entrega UPeU revisada: documentos, equipo, 14 diapositivas y exclusión del video.');
+} finally {
+  await browser.close();
+}

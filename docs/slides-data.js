@@ -1,14 +1,177 @@
-export const slides=[
-  {title:'FLUX',subtitle:'Simulador interactivo de campos\neléctricos y magnéticos en 3D',body:['Proyecto de Física II','Cuatro unidades · nueve módulos'],image:'campo-electrico',notes:'Presentar el objetivo: convertir modelos de electricidad y magnetismo en experimentos interactivos con resultados verificables. La imagen es una captura real del simulador. No se trata de una medición física.'},
-  {title:'Un laboratorio, cuatro unidades',body:['01  Electricidad, campo y potencial','02  Capacitores, dieléctricos y energía','03  Corriente, circuitos y ley de Ohm','04  Campo magnético y fuerza de Lorentz'],accent:'Cambiar → observar → calcular → comprobar',notes:'Explicar que el documento de requisitos pide nueve módulos distribuidos en cuatro unidades. Los entregables incluyen código fuente, manual, video de 5–10 minutos, informe y material para la defensa. El proyecto integra además RC, JSON y CSV. Fuente: documento de requisitos proporcionado por el usuario.'},
-  {title:'Campo eléctrico y potencial',body:['Hasta diez cargas puntuales en el espacio.','El campo suma vectores; el potencial suma escalares.','A 1 m de 1 nC: E ≈ 8.99 N/C y V ≈ 8.99 V.'],accent:'E ∝ 1/r²     V ∝ 1/r',image:'vista-2d',notes:'Demostrar una carga aislada de 1 nC. Duplicar la distancia y mostrar que E se divide entre cuatro y V entre dos. Luego pasar a un dipolo y explicar por qué V puede ser cero mientras E no lo es. Fuente: https://openstax.org/books/university-physics-volume-2/pages/5-4-electric-field y https://openstax.org/books/university-physics-volume-2/pages/7-3-calculations-of-electric-potential'},
-  {title:'Equipotenciales y trayectorias',body:['Curvas en z = 0 y superficies en 3D.','El campo es perpendicular a las equipotenciales.','La trayectoria depende también de la velocidad inicial.'],accent:'V(r) = constante',image:'equipotenciales',notes:'Mostrar los controles 2D y 3D y activar equipotenciales ±15 V. Aclarar que la malla es una aproximación y que la sonda usa las ecuaciones directas. Lanzar una partícula. Distinguir línea de campo y trayectoria: la fuerza determina aceleración, no la dirección instantánea de la velocidad. Fuentes: OpenStax, secciones 5.4 y 7.3; implementación src/scene.js y src/physics.js.'},
-  {title:'Capacitores y dieléctricos',body:['Más área o permitividad → mayor capacitancia.','Más separación → menor capacitancia.','Duplicar V multiplica la energía por cuatro.'],accent:'C = ε₀ εᵣ A/d     U = ½CV²',image:'capacitor',notes:'Usar A=200 cm², d=3 mm, εr=1 y V=12 V: C≈59 pF. Duplicar el área y después cambiar el dieléctrico. La batería permanece conectada, de modo que V se mantiene constante. El dibujo amplía el espacio entre placas. Fuentes: https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance y https://openstax.org/books/university-physics-volume-2/pages/8-3-energy-stored-in-a-capacitor'},
-  {title:'Circuitos y ley de Ohm',body:['Etapas en serie; ramas en paralelo.','Ejemplo mixto: 100 + (220 || 330) = 232 Ω.','A 12 V: I ≈ 51.7 mA y P ≈ 0.621 W.'],accent:'V = IR     P = VI',image:'circuitos',notes:'Identificar las etapas y las ramas del circuito. Comprobar que la corriente de la etapa se reparte entre sus ramas, las caídas de tensión suman la fuente y las potencias suman el total. Cambiar la fuente para recorrer la gráfica I–V. El solver no admite puentes arbitrarios. Fuente: https://openstax.org/books/university-physics-volume-2/pages/10-3-kirchhoffs-rules'},
-  {title:'La respuesta transitoria RC',body:['Un capacitor en serie con la red resistiva.','En t = τ: alcanza 63.2 % durante la carga.','Al descargar, la fuente se desconecta.'],accent:'τ = RC',image:'circuito-rc',notes:'Animar carga y descarga. La respuesta se calcula analíticamente con la exponencial; no usa el integrador de partículas. En descarga, la corriente es negativa respecto al sentido de carga. El voltaje inicial es el parámetro V elegido. Fuente: https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits'},
-  {title:'Campos magnéticos',body:['Imán aproximado por un dipolo ideal.','Hilo infinito: B disminuye como 1/r.','Espira: integración de Biot–Savart.'],accent:'Invertir la corriente invierte B',image:'espira',notes:'Mostrar imán, conductor y espira. Invertir el signo de la corriente y relacionarlo con la regla de la mano derecha. La espira tiene radio 1 m y 128 segmentos de integración. A 5 A produce 3.14 µT en su centro. Fuente: https://openstax.org/books/university-physics-volume-2/pages/12-1-the-biot-savart-law'},
-  {title:'Fuerza de Lorentz',body:['Con solo B, cambia la dirección de v.','La rapidez y la energía cinética se conservan.','Con Ey/Bz = vx, las fuerzas se compensan.'],accent:'F = q(E + v × B)',image:'lorentz',notes:'Usar q=1 C, m=1 kg, Bz=1 T, E=0 y velocidad (2,0,0.4) m/s. El radio es 2 m y K=2.08 J. Luego establecer vz=0, Ey=2 y vx=2: la partícula avanza sin desviarse. Aclarar que son parámetros didácticos clásicos, no un electrón. Fuente: https://openstax.org/books/university-physics-volume-2/pages/11-3-motion-of-a-charged-particle-in-a-magnetic-field'},
-  {title:'Arquitectura y algoritmos',body:['Estado y controles: entradas validadas en SI.','Motor físico: funciones independientes del navegador.','Visualización: Three.js, SVG y recursos locales.','Boris para partículas; RK4 para líneas de campo.'],accent:'Parámetros → cálculo → visualización',notes:'Explicar src/app.js, src/physics.js, src/scene.js y src/charts.js. El renderizador no determina los resultados físicos. Boris separa impulso eléctrico y rotación magnética; RK4 se usa solo para la geometría de las líneas. No se necesita backend. Fuentes: https://threejs.org/manual/pages/installation.html y https://arxiv.org/abs/1809.04378'},
-  {title:'Validación del modelo',body:['Soluciones analíticas de Coulomb, RC, hilo y espira.','Conservación de corriente, potencia y rapidez.','Convergencia de orden dos del integrador.','Pruebas del navegador, exportaciones y vista móvil.'],accent:'Conservar energía no elimina el error de fase',notes:'Ejecutar npm test y npm run test:ui. Explicar que una propiedad física no sustituye todas las pruebas: Boris conserva rapidez con B uniforme, pero tiene error de fase que disminuye al reducir el paso. La geometría equipotencial se valida por comparación con una esfera. Registro en docs/validacion.json; casos en tests/physics.test.mjs. Las pruebas móviles son de viewport, no de dispositivos físicos.'},
-  {title:'Entrega y alcance',body:['Código fuente, manual y reporte técnico.','Video de seis minutos y presentación editable.','Experimentos JSON y trayectorias CSV.','Modelos ideales con límites documentados.'],accent:'Explorar con la escena. Comprobar con los números.',notes:'Cerrar mostrando los enlaces del proyecto. Mencionar los límites relevantes: fuentes fijas, capacitor sin efectos de borde, circuitos serie/paralelo y partículas clásicas. No prometer modelos no implementados. Invitar a comprobar uno de los casos analíticos. La defensa presencial debe realizarla el estudiante.'}
+import { project } from '../src/config/project.js';
+const openstax =
+  'Fuente: OpenStax, University Physics Volume 2. https://openstax.org/books/university-physics-volume-2/pages/5-4-electric-field';
+export const slides = [
+  {
+    layout: 'cover',
+    title: 'Electricidad y\nmagnetismo en 3D',
+    subtitle: 'Laboratorio interactivo de Física II',
+    image: 'campo-electrico',
+    notes: `Proyecto de ${project.members.join(', ')}. ${project.degree}, ${project.cycle}, ${project.university}. Presentar cuatro unidades con cálculo y experimentación. Los modelos son ideales.`,
+  },
+  {
+    layout: 'overview',
+    title: 'Cuatro unidades de Física II',
+    items: [
+      ['01', 'Electricidad y potencial', 'Cargas, campo y equipotenciales'],
+      ['02', 'Capacitores', 'Geometría, dieléctrico y energía'],
+      ['03', 'Circuitos eléctricos', 'Redes mixtas y respuesta RC'],
+      ['04', 'Magnetismo', 'Fuentes de B y fuerza de Lorentz'],
+    ],
+    notes:
+      'Los nueve requisitos funcionales se agrupan en cuatro unidades. Cada unidad tiene una escena 3D, controles y resultados. Explicar el recorrido de la exposición.',
+  },
+  {
+    layout: 'experiment',
+    unit: 'UNIDAD 01',
+    title: 'Campo eléctrico y potencial',
+    image: 'vista-2d',
+    body: [
+      'Una carga de 1 nC a 1 m:',
+      'E = 8.99 N/C    V = 8.99 V',
+      'A 2 m: E = 2.25 N/C y V = 4.49 V',
+    ],
+    formula: 'E ∝ 1/r²     V ∝ 1/r',
+    notes:
+      'Elegir una carga aislada y mover la sonda de 1 a 2 m. La imagen muestra una distribución dipolar, que también puede explorarse. Arrastrar una carga recalcula el campo. ' +
+      openstax +
+      ' Potencial: https://openstax.org/books/university-physics-volume-2/pages/7-3-calculations-of-electric-potential',
+  },
+  {
+    layout: 'hero',
+    unit: 'UNIDAD 01',
+    title: 'El potencial también tiene geometría',
+    image: 'equipotenciales',
+    caption: 'Superficies V = ±15 V de un dipolo. El campo es perpendicular a las equipotenciales.',
+    formula: 'V(r) = Σ kqᵢ/rᵢ',
+    notes:
+      'Activar superficies y alternar 2D/3D. En el centro del dipolo V=0, pero E no es cero. La sonda usa la fórmula directa y la superficie una malla aproximada. Fuente: OpenStax, sección 7.3.',
+  },
+  {
+    layout: 'experiment',
+    unit: 'UNIDAD 02',
+    title: 'Capacitancia y energía almacenada',
+    image: 'capacitor',
+    body: [
+      'Más área o permitividad: mayor C.',
+      'Más separación: menor C.',
+      'Duplicar V multiplica U por cuatro.',
+    ],
+    formula: 'C = ε₀εᵣA/d\nU = ½CV²',
+    notes:
+      'Usar 200 cm², 3 mm, εr=1 y 12 V: C≈59 pF. Cambiar geometría y dieléctrico. El dibujo amplía la separación. Fuentes: https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance y https://openstax.org/books/university-physics-volume-2/pages/8-3-energy-stored-in-a-capacitor',
+  },
+  {
+    layout: 'chart',
+    unit: 'UNIDAD 02',
+    title: 'Carga del capacitor',
+    stat: '63.2 %',
+    body: [
+      'del voltaje final en t = τ',
+      'τ = RC',
+      'El avance por pasos permite inspeccionar cada instante.',
+    ],
+    chart: {
+      title: 'Carga normalizada del capacitor',
+      xTitle: 'Tiempo / τ',
+      yTitle: 'Vc / V₀',
+      categories: Array.from({ length: 11 }, (_, i) => String(i * 0.5)),
+      values: Array.from({ length: 11 }, (_, i) => Number((1 - Math.exp(-i * 0.5)).toFixed(6))),
+      max: 1,
+    },
+    notes:
+      'Iniciar la carga RC del capacitor. La resistencia se expresa en MΩ y C se calcula desde la geometría. El reloj visual recorre 0–5τ; el rótulo muestra segundos físicos. La gráfica redondea a seis decimales. Fuente: https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits',
+  },
+  {
+    layout: 'hero',
+    unit: 'UNIDAD 03',
+    title: 'Un circuito que se puede explorar',
+    image: 'circuitos',
+    caption: 'Placa 3D, selección de resistencias y corriente convencional animada.',
+    formula: '100 + (220 || 330) = 232 Ω',
+    notes:
+      'Pulsar una resistencia para editarla y la fuente para apagarla. Las etapas se conectan en serie y las ramas, en paralelo. Placa, esquema y tabla comparten los cálculos. La rapidez de los puntos es visual. Fuente: https://openstax.org/books/university-physics-volume-2/pages/10-3-kirchhoffs-rules',
+  },
+  {
+    layout: 'chart',
+    unit: 'UNIDAD 03',
+    title: 'Ley de Ohm y punto de operación',
+    stat: '51.7 mA',
+    body: ['con 12 V y R = 232 Ω', 'I = V/R', 'Potencia total: P ≈ 0.621 W'],
+    chart: {
+      title: 'Corriente para R equivalente = 232 Ω',
+      xTitle: 'Voltaje de la fuente (V)',
+      yTitle: 'Corriente (mA)',
+      categories: ['0', '4', '8', '12', '16', '20', '24'],
+      values: [0, 4, 8, 12, 16, 20, 24].map((v) => Number(((v / 232) * 1000).toFixed(6))),
+      max: 110,
+    },
+    notes:
+      'La pendiente de I frente a V es 1/R. Comprobar corrientes de ramas y suma de potencias. Las gráficas de esta presentación son editables en PowerPoint, con datos redondeados a seis decimales. Fuente: OpenStax, reglas de Kirchhoff.',
+  },
+  {
+    layout: 'comparison',
+    unit: 'UNIDAD 04',
+    title: 'Campos producidos por corrientes',
+    images: ['conductor', 'espira'],
+    headings: ['Conductor rectilíneo', 'Espira circular'],
+    captions: ['B = µ₀I / (2πr)', 'Biot–Savart con 128 segmentos'],
+    notes:
+      'Invertir la corriente y observar el sentido de B. Con I=5 A y R=1 m, la espira genera 3.14 µT en el centro. Fuente: https://openstax.org/books/university-physics-volume-2/pages/12-1-the-biot-savart-law',
+  },
+  {
+    layout: 'hero',
+    unit: 'UNIDAD 04',
+    title: 'La fuerza magnética curva la trayectoria',
+    image: 'lorentz-orbita',
+    caption:
+      'Con E = 0, la energía cinética permanece constante. Una velocidad paralela a B produce la hélice.',
+    formula: 'F = q(E + v × B)',
+    notes:
+      'Usar q=1 C, m=1 kg, Bz=1 T y v=(2,0,0.4) m/s. El radio es 2 m y K=2.08 J. La fuerza magnética es perpendicular a v. Boris preserva la rapidez en este caso, pero tiene error de fase. Fuente: https://openstax.org/books/university-physics-volume-2/pages/11-3-motion-of-a-charged-particle-in-a-magnetic-field',
+  },
+  {
+    layout: 'experiment',
+    unit: 'UNIDAD 04',
+    title: 'Un selector de velocidades',
+    image: 'selector',
+    body: [
+      'Ey = 2 N/C    Bz = 1 T',
+      'v = (2, 0, 0) m/s',
+      'La fuerza eléctrica cancela a la magnética.',
+    ],
+    formula: 'vx = Ey / Bz',
+    notes:
+      'Lanzar la partícula con los valores indicados: la trayectoria es recta. Cambiar Ey para romper el equilibrio. Son parámetros didácticos clásicos, no un electrón real. Fuente: OpenStax, movimiento de partículas cargadas.',
+  },
+  {
+    layout: 'architecture',
+    title: 'Estructura del proyecto',
+    items: [
+      ['core/', 'Cálculo físico y validación'],
+      ['modules/', 'Controles de las cuatro unidades'],
+      ['rendering/', 'Escenas 3D y animaciones'],
+      ['ui/', 'Componentes y gráficas'],
+      ['config/', 'Parámetros y datos del equipo'],
+    ],
+    notes:
+      'El cálculo se prueba sin DOM. Cada unidad mantiene controles y escena propios. El reloj visual es independiente del integrador físico. Código con nombres explícitos y formato consistente. Fuente: código del repositorio.',
+  },
+  {
+    layout: 'validation',
+    title: 'Cómo comprobamos los resultados',
+    items: [
+      ['Coulomb', 'Ley inversa del cuadrado y superposición'],
+      ['Circuitos', 'Kirchhoff y balance de potencia'],
+      ['Trayectorias', 'Rapidez conservada y convergencia'],
+      ['Interacción', 'Animación, pausa, arrastre y archivos'],
+    ],
+    notes:
+      'Mostrar el registro de validación y explicar el contraste con soluciones analíticas. La prueba de navegador comprueba movimiento real, pausa, paso, arrastre y archivos. Límites: modelos ideales, redes serie/paralelo y régimen clásico.',
+  },
+  {
+    layout: 'team',
+    title: 'Equipo del proyecto',
+    notes: `Integrantes: ${project.members.join(', ')}. Docente: ${project.teacher}. ${project.degree}, ${project.cycle}. Finalizar con una demostración y usar la guía de defensa para las preguntas.`,
+  },
 ];
