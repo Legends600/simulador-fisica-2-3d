@@ -35,7 +35,11 @@ El logo institucional es el original proporcionado por el equipo. Los datos acad
 
 ## Ejecutar en el equipo
 
-Se requiere **Node.js 22 o posterior** y un navegador con WebGL 2.
+**Con VS Code y Go Live:** abre la carpeta completa del proyecto, selecciona `index.html` y pulsa **Go Live**. No es necesario ejecutar una compilación ni instalar dependencias para esta opción: los recursos de Three.js y su licencia se incluyen en `vendor/`.
+
+Se necesita un navegador con WebGL 2. Si falta algún recurso, el laboratorio muestra un mensaje de inicio y permite reintentar la carga.
+
+**Con el servidor de Node.js:** instala Node.js 22 o posterior y ejecuta:
 
 ```sh
 npm ci
@@ -49,7 +53,7 @@ npm run build
 npm start
 ```
 
-**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.0.0/fisica-ii-upeu-v2.0.0.zip)**. Descomprime y ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
+**[Descargar paquete independiente](https://github.com/Legends600/simulador-fisica-2-3d/releases/download/v2.1.0/fisica-ii-upeu-v2.1.0.zip)**. Descomprime y abre con Live Server, o ejecuta `node server.mjs` dentro de la carpeta. Incluye Three.js, el manual, el informe y la presentación.
 
 ## Estructura del proyecto
 
@@ -75,6 +79,7 @@ assets/brand/               Logo institucional original
 docs/                       Manual, informe, presentación y defensa
 tests/                      Soluciones analíticas y reloj de reproducción
 scripts/                    Build, servidor, documentación y QA
+vendor/                     Three.js local, licencia y manifiesto de integridad
 ```
 
 Three.js es la dependencia de ejecución. Playwright se usa para verificación y Prettier para mantener formato consistente. El build parte de una carpeta limpia e incorpora las bibliotecas gráficas localmente.
@@ -94,9 +99,14 @@ npx playwright install chromium
 npm run test:ui
 npm run test:animations
 npm run test:delivery
+npm run test:static
 ```
 
 Las pruebas comprueban cambio real de posiciones en las cuatro animaciones, pausa, avance por pasos, arrastre de cargas, selección de resistencias, apagado de fuente, carga RC, archivos JSON/CSV y vistas de 390/768 px. Chrome o Edge pueden usarse en Windows mediante un perfil temporal aislado. `BROWSER_PATH` y `BASE_URL` permiten configurar el entorno de pruebas.
+
+`test:static` inicia su propio servidor HTTP, sin redirecciones de dependencias ni acceso a `node_modules`. Comprueba las cuatro unidades, cinco tamaños de pantalla y la recuperación ante un recurso ausente. También acepta `npm run test:static -- --dist` para verificar la versión distribuible.
+
+Al actualizar Three.js, ejecuta `npm run vendor:sync` y añade los recursos actualizados al repositorio. `npm run vendor:check` valida la versión y las huellas SHA-256 de los archivos distribuidos.
 
 ## Modelos y límites
 

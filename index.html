@@ -11,6 +11,7 @@
     <title>Física II · Laboratorio UPeU</title>
     <link rel="icon" href="assets/brand/upeu.png" type="image/png" />
     <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="src/ui/laboratory.css" />
     <script type="importmap">
       {
         "imports": {
@@ -20,7 +21,7 @@
       }
     </script>
   </head>
-  <body>
+  <body data-app-state="loading">
     <a href="#workspace" class="skip-link">Ir al laboratorio</a>
     <aside class="sidebar">
       <a class="brand university-brand" href="./" aria-label="Laboratorio de Física II, UPeU"
@@ -59,7 +60,7 @@
         ><a href="docs/informe.html">↗ Informe técnico</a
         ><a href="docs/presentacion.html">↗ Presentación</a
         ><a href="#project-team">↗ Equipo del proyecto</a>
-        <div class="version">FÍSICA II <span>v2.0</span></div>
+        <div class="version">FÍSICA II <span>v2.1</span></div>
       </div>
     </aside>
     <main id="workspace">
@@ -78,17 +79,30 @@
       <section class="page-heading">
         <div>
           <div class="eyebrow" id="unit-eyebrow">UNIDAD 01 · ELECTROSTÁTICA</div>
-          <h1 id="unit-title">Haz visible lo invisible.</h1>
+          <h1 id="unit-title">Campo eléctrico y potencial</h1>
           <p id="unit-description">Explora cómo las cargas transforman el espacio que las rodea.</p>
         </div>
         <button id="reset" class="outline-button">↺ Reiniciar unidad</button>
       </section>
+      <section class="startup-status" id="startup-status" role="status">
+        <strong id="startup-title">Preparando el laboratorio</strong>
+        <p id="startup-message">Cargando los controles y los recursos 3D…</p>
+      </section>
       <div class="lab-layout">
-        <section
-          id="controls"
-          class="control-panel"
-          aria-label="Parámetros del experimento"
-        ></section>
+        <aside class="parameters-column" aria-label="Configuración del experimento">
+          <div class="parameters-heading">
+            <div>
+              <span class="eyebrow">CONFIGURA Y EXPLORA</span>
+              <h2>Parámetros</h2>
+            </div>
+            <span class="parameters-count" id="parameters-unit">01</span>
+          </div>
+          <section
+            id="controls"
+            class="control-panel"
+            aria-label="Parámetros del experimento"
+          ></section>
+        </aside>
         <div class="experiment-column">
           <section class="viewport-card" aria-label="Visualización del experimento">
             <div class="viewport-toolbar">
@@ -176,6 +190,6 @@
     </main>
     <div id="toast" role="status" hidden></div>
     <noscript>Activa JavaScript para utilizar el simulador.</noscript>
-    <script type="module" src="src/app.js"></script>
+    <script type="module" src="src/bootstrap.js"></script>
   </body>
 </html>

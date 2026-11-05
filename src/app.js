@@ -423,6 +423,7 @@ function setUnit(unit) {
   resetSimulation();
   rcPlaying = false;
   const [n, label, title, desc] = info[unit];
+  $('#parameters-unit').textContent = n;
   $('#breadcrumb-unit').textContent = `Unidad ${n}`;
   $('#unit-eyebrow').textContent = `UNIDAD ${n} · ${label}`;
   $('#unit-title').textContent = title;

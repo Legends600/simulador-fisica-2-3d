@@ -1,10 +1,8 @@
 import http from 'node:http';
 import { stat } from 'node:fs/promises';
-import { createReadStream, existsSync } from 'node:fs';
+import { createReadStream } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 const root = resolve(process.argv.includes('--dist') ? 'dist' : '.');
-const sourceMode =
-  !process.argv.includes('--dist') && existsSync(resolve(root, 'node_modules/three/build'));
 const port = Number(process.env.PORT || 4173);
 const mime = {
   '.html': 'text/html; charset=utf-8',
@@ -27,10 +25,6 @@ http
         res.writeHead(403).end();
         return;
       }
-      if (sourceMode)
-        pathname = pathname
-          .replace(/^\/vendor\/three\//, '/node_modules/three/build/')
-          .replace(/^\/vendor\/addons\//, '/node_modules/three/examples/jsm/');
       let file = resolve(root, `.${pathname}`);
       if (file !== root && !file.startsWith(root + sep)) {
         res.writeHead(403).end();

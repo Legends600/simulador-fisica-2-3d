@@ -1,0 +1,726 @@
+/* Layout and readable controls shared by the four experiments. */
+:root {
+  --lab-blue: #003b65;
+  --lab-ink: #203e56;
+  --lab-muted: #526c82;
+  --lab-border: #dbe4ed;
+  --lab-surface: #ffffff;
+  background: #f2f5f9;
+  color: var(--lab-ink);
+}
+.sidebar {
+  width: 228px;
+  padding: 22px 16px 18px;
+}
+.university-brand {
+  margin: 0 8px 26px;
+  padding: 13px 8px 12px;
+  gap: 5px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.university-brand img {
+  width: 92px;
+  height: 83px;
+}
+.university-brand small {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.nav-label {
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  margin-bottom: 12px;
+}
+.nav-item {
+  padding: 15px 10px;
+  font-size: 13px;
+  gap: 11px;
+  border-radius: 8px;
+}
+.nav-item small {
+  font-size: 11px;
+  line-height: 1.5;
+}
+.nav-number {
+  font-size: 10px;
+}
+.nav-item.active {
+  border-color: #7e9db4;
+  background: #ffffff14;
+  box-shadow: inset 3px 0 #f5bd24;
+}
+.sidebar-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  font-size: 10px;
+}
+.sidebar-bottom {
+  padding: 20px 10px 0;
+}
+.sidebar-bottom a {
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 7px 0;
+}
+.version {
+  padding-top: 16px;
+  margin-top: 15px;
+  font-size: 10px;
+}
+main {
+  margin-left: 228px;
+  padding: 0 28px;
+  max-width: 2060px;
+}
+.topbar {
+  height: 64px;
+}
+.topbar .breadcrumb {
+  font-size: 12px;
+}
+.quiet-button {
+  border-color: #d8e2ec;
+  background: white;
+  padding: 9px 12px;
+  font-size: 12px;
+}
+.top-actions {
+  gap: 9px;
+}
+.live-label {
+  font-size: 11px;
+}
+.page-heading {
+  padding: 24px 0 23px;
+}
+.page-heading .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.page-heading h1 {
+  font-size: clamp(24px, 2.1vw, 32px);
+  margin: 9px 0;
+  letter-spacing: -0.7px;
+}
+.page-heading p {
+  font-size: 13px;
+  color: var(--lab-muted);
+}
+.outline-button {
+  font-size: 12px;
+  background: white;
+  padding: 11px 14px;
+  border-color: #cbd9e5;
+}
+.lab-layout {
+  grid-template-columns: minmax(280px, 310px) minmax(0, 1fr);
+  gap: 22px;
+}
+.parameters-column {
+  min-width: 0;
+  position: sticky;
+  top: 16px;
+  background: white;
+  border: 1px solid var(--lab-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px #13345006;
+}
+.parameters-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--lab-border);
+  background: #fcfdff;
+}
+.parameters-heading .eyebrow {
+  font-size: 8px;
+  color: #647c91;
+  letter-spacing: 1.3px;
+}
+.parameters-heading h2 {
+  font-size: 18px;
+  color: var(--lab-blue);
+  margin: 6px 0 0;
+  font-weight: 650;
+}
+.parameters-count {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  background: #edf3f8;
+  border: 1px solid #d7e3ed;
+  border-radius: 7px;
+  color: #416582;
+  font-size: 13px;
+  font-weight: 600;
+}
+.control-panel {
+  border: 0;
+  border-radius: 0;
+  max-height: calc(100dvh - 300px);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-color: #a8bdce #f4f7fa;
+}
+.panel-section {
+  padding: 19px 20px;
+}
+.section-heading {
+  margin-bottom: 16px;
+}
+.section-heading h2,
+.section-heading h3 {
+  font-size: 14px;
+  color: #1f415c;
+}
+.section-heading .tag {
+  font-size: 10px;
+  padding: 4px 7px;
+}
+.field {
+  font-size: 12px;
+  color: #3f5d75;
+  margin: 15px 0;
+}
+.field .unit,
+.field output {
+  font-size: 11px;
+  color: #58748b;
+}
+.field input:not([type='range']),
+.field select,
+select.standalone {
+  min-height: 39px;
+  padding: 9px 10px;
+  font-size: 13px;
+  border-color: #cedce8;
+  background: #fcfdff;
+  border-radius: 6px;
+}
+.field input:focus,
+.field select:focus,
+.charge-row input:focus {
+  background: white;
+  border-color: #4189ac;
+}
+.range-row {
+  gap: 11px;
+}
+.range-row input[type='number'] {
+  max-width: 79px;
+}
+input[type='range'] {
+  accent-color: #127891;
+  cursor: pointer;
+}
+.charge-row {
+  padding: 12px;
+  border-color: #dce6ee;
+  border-radius: 7px;
+}
+.charge-top {
+  font-size: 12px;
+  gap: 7px;
+  margin-bottom: 11px;
+}
+.charge-q {
+  font-size: 11px;
+}
+.charge-row input {
+  width: 54px;
+  padding: 7px 5px;
+  font-size: 12px;
+  border-color: #cbdbe8;
+}
+.charge-position {
+  gap: 7px;
+}
+.charge-position label {
+  font-size: 10px;
+  color: #536f86;
+}
+.charge-sign {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+.small-note {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #526e84;
+}
+.toggle {
+  font-size: 12px;
+  line-height: 1.6;
+  gap: 9px;
+  color: #415d75;
+}
+.toggle input {
+  width: 16px;
+  height: 16px;
+}
+.primary-button {
+  background: #006884;
+  padding: 12px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+.secondary-button {
+  font-size: 12px;
+  border-radius: 6px;
+}
+.add-button {
+  padding: 11px;
+  font-size: 12px;
+  color: #365e7c;
+  border-color: #b8cddd;
+  border-radius: 6px;
+}
+.icon-button {
+  min-width: 24px;
+  min-height: 28px;
+}
+.control-panel details > summary {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #1d4868;
+}
+.segmented button {
+  font-size: 11px;
+  min-height: 36px;
+  line-height: 1.4;
+}
+.branch,
+.stage-title {
+  font-size: 12px;
+}
+.branch input {
+  min-height: 34px;
+  font-size: 12px;
+}
+table {
+  font-size: 11px;
+}
+.viewport-card {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px #17394b0b;
+}
+.viewport-toolbar {
+  height: 55px;
+  padding: 0 18px;
+}
+.viewport-toolbar strong {
+  font-size: 13px;
+}
+.viewport-toolbar #scene-subtitle {
+  font-size: 9px;
+}
+.view-actions {
+  gap: 5px;
+}
+.view-actions button {
+  min-width: 34px;
+  min-height: 32px;
+  font-size: 12px;
+}
+#scene,
+#scene.circuit-scene {
+  height: clamp(320px, calc(100dvh - 492px), 540px);
+}
+#scene-overlay {
+  top: 14px;
+  left: 17px;
+  max-width: calc(100% - 34px);
+  font-size: 11px;
+  color: #c5d5e3;
+}
+.scene-hint {
+  left: 14px;
+  bottom: 13px;
+  font-size: 10px;
+  color: #c0d1e0;
+  background: #0d1c2cbb;
+  border: 1px solid #37516866;
+  border-radius: 5px;
+  padding: 7px 9px;
+}
+.viewport-legend {
+  min-height: 42px;
+  gap: 15px;
+  padding: 12px 17px;
+  font-size: 11px;
+  color: #b5c8d8;
+}
+.animation-controls {
+  gap: 8px;
+  margin-top: 11px;
+  padding: 10px 13px;
+  min-height: 57px;
+  border-color: var(--lab-border);
+  border-radius: 9px;
+}
+.animation-controls button {
+  min-height: 35px;
+  font-size: 12px;
+  border-color: #ccdae6;
+}
+.animation-controls #animation-play {
+  min-width: 105px;
+  background: var(--lab-blue);
+}
+.animation-controls label {
+  font-size: 11px;
+}
+.animation-controls select {
+  font-size: 12px;
+  min-height: 33px;
+}
+.animation-controls output {
+  font-size: 11px;
+  color: #365e7c;
+}
+.result-grid {
+  gap: 11px;
+  margin-top: 13px;
+}
+.result {
+  padding: 14px 16px;
+  border-color: var(--lab-border);
+  border-radius: 9px;
+}
+.result-label {
+  font-size: 11px;
+  color: #526e85;
+}
+.result-value {
+  font-size: clamp(21px, 1.6vw, 28px);
+  margin: 7px 0 4px;
+  color: #133e5e;
+}
+.result-unit {
+  font-size: 10px;
+  color: #5b7489;
+}
+.explanation {
+  margin-top: 21px;
+  padding-left: 16px;
+  border-left-color: #258aa0;
+}
+.explanation h2 {
+  font-size: 14px;
+}
+.explanation p {
+  font-size: 12px;
+  color: #506c82;
+}
+.formula {
+  font-size: 20px;
+}
+.project-team {
+  margin-top: 27px;
+}
+.page-footer {
+  font-size: 10px;
+}
+.startup-status {
+  margin: 0 0 20px;
+  padding: 17px 20px;
+  border: 1px solid #c5dce9;
+  border-left: 4px solid #2e8da7;
+  border-radius: 8px;
+  background: #edf7fc;
+}
+.startup-status[hidden] {
+  display: none;
+}
+.startup-status strong {
+  font-size: 15px;
+  color: #1b4968;
+}
+.startup-status p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #466379;
+  margin: 7px 0 0;
+}
+.startup-status button {
+  margin-top: 12px;
+  background: #003b65;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+.startup-error {
+  background: #fff6eb;
+  border-color: #e4c69e;
+  border-left-color: #be873f;
+}
+@media (max-height: 800px) and (min-width: 741px) {
+  .university-brand img {
+    width: 73px;
+    height: 66px;
+  }
+  .university-brand {
+    font-size: 16px;
+    margin-bottom: 19px;
+    padding: 10px 8px;
+  }
+  .sidebar-note {
+    display: none;
+  }
+  .sidebar-bottom {
+    padding-top: 10px;
+  }
+  .version {
+    margin-top: 10px;
+    padding-top: 12px;
+  }
+}
+@media (max-width: 1190px) {
+  .sidebar {
+    width: 202px;
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+  main {
+    margin-left: 202px;
+    padding: 0 21px;
+  }
+  .lab-layout {
+    grid-template-columns: 272px minmax(0, 1fr);
+    gap: 17px;
+  }
+  .nav-item {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .nav-item small {
+    font-size: 10px;
+  }
+  .panel-section {
+    padding: 17px;
+  }
+  .parameters-heading {
+    padding: 16px 17px;
+  }
+  .viewport-toolbar #scene-subtitle {
+    display: none;
+  }
+  .animation-controls output {
+    margin-left: auto;
+  }
+  .result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .result-value {
+    font-size: 24px;
+  }
+  .live-label {
+    display: none;
+  }
+}
+@media (max-width: 950px) and (min-width: 741px) {
+  .sidebar {
+    width: 174px;
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+  main {
+    margin-left: 174px;
+    padding: 0 17px;
+  }
+  .lab-layout {
+    grid-template-columns: 245px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .university-brand {
+    margin-left: 4px;
+    margin-right: 4px;
+    font-size: 16px;
+  }
+  .nav-item {
+    padding: 12px 6px;
+    font-size: 11px;
+  }
+  .nav-icon {
+    width: 21px;
+  }
+  .sidebar-note {
+    display: none;
+  }
+  .panel-section {
+    padding: 14px;
+  }
+  .charge-row {
+    padding: 9px;
+  }
+  .page-heading h1 {
+    font-size: 25px;
+  }
+  .quiet-button {
+    font-size: 10px;
+    padding: 8px;
+  }
+  #scene,
+  #scene.circuit-scene {
+    height: 375px;
+  }
+}
+@media (max-width: 740px) {
+  .sidebar {
+    width: 100%;
+    position: relative;
+    padding: 12px 15px 10px;
+  }
+  .university-brand {
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 9px 13px;
+    gap: 15px;
+    text-align: left;
+    font-size: 20px;
+  }
+  .university-brand img {
+    width: 59px;
+    height: 53px;
+  }
+  .university-brand small {
+    font-size: 8px;
+  }
+  .sidebar nav {
+    gap: 5px;
+  }
+  .nav-item {
+    padding: 10px 3px;
+    font-size: 10px;
+    gap: 6px;
+  }
+  .nav-item small {
+    display: none;
+  }
+  .sidebar-bottom {
+    display: flex;
+    padding: 9px 1px 0;
+    gap: 13px;
+    flex-wrap: wrap;
+  }
+  .sidebar-bottom a {
+    font-size: 10px;
+    padding: 3px 0;
+  }
+  .sidebar-bottom .version {
+    display: none;
+  }
+  main {
+    margin: 0;
+    padding: 0 15px;
+  }
+  .topbar {
+    height: 53px;
+    gap: 5px;
+  }
+  .topbar .breadcrumb {
+    font-size: 9px;
+  }
+  .quiet-button {
+    font-size: 10px;
+    padding: 7px;
+  }
+  .page-heading {
+    padding: 21px 0;
+  }
+  .page-heading h1 {
+    font-size: 25px;
+  }
+  .page-heading p {
+    font-size: 12px;
+  }
+  .outline-button {
+    font-size: 0;
+    min-width: 34px;
+    padding: 7px;
+  }
+  .lab-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+  }
+  .parameters-column {
+    order: 2;
+    width: 100%;
+    position: static;
+  }
+  .parameters-heading {
+    padding: 17px 19px;
+  }
+  .control-panel {
+    max-height: none;
+  }
+  .experiment-column {
+    width: 100%;
+    order: 1;
+  }
+  .panel-section {
+    padding: 20px;
+  }
+  #scene,
+  #scene.circuit-scene {
+    height: 350px;
+  }
+  .viewport-toolbar {
+    padding: 0 11px;
+  }
+  .viewport-toolbar strong {
+    font-size: 12px;
+  }
+  .view-actions button {
+    min-width: 29px;
+  }
+  #scene-overlay {
+    font-size: 10px;
+  }
+  .scene-hint {
+    font-size: 9px;
+    padding: 6px 7px;
+  }
+  .viewport-legend {
+    font-size: 10px;
+    gap: 11px;
+    padding: 11px 13px;
+  }
+  .animation-controls {
+    padding: 10px;
+    gap: 7px;
+  }
+  .animation-controls button {
+    font-size: 11px;
+    padding: 8px;
+  }
+  .animation-controls #animation-play {
+    min-width: 92px;
+  }
+  .animation-controls output {
+    margin-left: auto;
+    font-size: 10px;
+  }
+  .result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .result {
+    padding: 13px;
+  }
+  .result-value {
+    font-size: 25px;
+  }
+  .project-team {
+    padding: 22px;
+  }
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-04",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "physics": {
     "passed": 31,
     "failed": 0
@@ -12,6 +12,19 @@
   "experimentFiles": {
     "passed": 2,
     "failed": 0
+  },
+  "staticServer": {
+    "target": "source",
+    "checks": [
+      "Inicio desde servidor estático en subcarpeta, sin node_modules ni rutas especiales",
+      "Las cuatro unidades cargan sus controles y escenas",
+      "Interacción y animación operativas en el servidor estático",
+      "Recursos locales sin fallos y diseño sin desbordamiento en cinco tamaños",
+      "Un recurso ausente muestra recuperación y evita la pantalla vacía"
+    ],
+    "errors": [],
+    "failed": [],
+    "dependencies": []
   },
   "interface": {
     "passed": 17,

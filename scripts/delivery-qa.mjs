@@ -77,6 +77,7 @@ try {
     physics: { passed: 31, failed: 0 },
     playback: { passed: 3, failed: 0 },
     experimentFiles: { passed: 2, failed: 0 },
+    staticServer: JSON.parse(await readFile('.qa/static/results.json', 'utf8')),
     interface: { passed: ui.checks.length, checks: ui.checks, browser: ui.browser },
     animation: { passed: animation.checks.length, checks: animation.checks },
     delivery: {
